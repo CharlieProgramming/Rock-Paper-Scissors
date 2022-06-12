@@ -1,3 +1,4 @@
+<!--THIS BRANCH GOT REALLY MESSY, I AM GOING TO MERGE THIS BRANCH AND START ANOTHER ONE AND I AM GOING TO START THE PROJECT FROM THE BEGINING IN ANOTHER BRANCH-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+    <div id="content">    
+        <div id="buttons">
+            <button class="selection" id="rock">Rock</button>
+            <button class="selection" id="paper">Paper</button>
+            <button class="selection" id="scissors">Scissors</button>
+        </div>
+        <div id="results">
+            Results
+                <ol id="list_item">
+    
+                </ol>
+        </div>
+    </div>
     <script>
         let playerScore = 0;
         let computerScore = 0;
         let draws = 0;
-        let score= "Player="+playerScore + "computer="+computerScore + "draws="+draws;
+        //let score= "Player="+playerScore + "computer="+computerScore + "draws="+draws;
         function computerPlay() {
             let elements=["Rock","Paper","Scissors"]
             let randomElem=elements[Math.floor(Math.random() * elements.length)]
@@ -41,16 +56,33 @@
                 return playerSelection + " " + computerSelection + " " + "You win! Scissors beats Paper"; 
             } 
         }
-        let playerSelection = prompt("Rock, Paper or Scissors?");
-        let computerSelection = computerPlay();
+        
+        window.addEventListener('click', function(e) {
+            const list_item = document.querySelector('#list_item');
+            const content = document.createElement('li');
+            content.classList.add('content');
+            content.textContent = playRound(e.target.id, computerSelection);
+
+            list_item.appendChild(content);
+            console.log(playRound(e.target.id, computerSelection));
+            
+        })
+        let computerSelection = computerPlay();        
+
+        //let playerSelection = prompt("Rock, Paper or Scissors?");
+        /*const buttons = document.querySelectorAll('.selection');
+        buttons.forEach(buttons => buttons.addEventListener('click', function(e) {
+            playRound()
+        }));*/
+        
         //console.log(playRound(playerSelection, computerSelection));
 
-        function game() {
+        /*function game() {
             console.log(playRound(playerSelection, computerSelection) + score);
         }
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 1; i++) {
                 console.log(game()+playerSelection);
-            }
+            }*/
     </script>
 </body>
 </html>
